@@ -1,3 +1,7 @@
+## not working yet, probably mysql folder not clean
+## reference doc
+## + https://docs.docker.com/compose/compose-file/
+#
 version: '3.0'
 networks:
   redmine-network:
@@ -8,8 +12,8 @@ services:
       redmine:latest
     networks:
       - redmine-network
-    restart:
-      always
+    #restart:
+    #  always
     ports:
       - 3000:3000
     environment:
