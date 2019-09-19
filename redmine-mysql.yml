@@ -1,0 +1,40 @@
+version: '3.0'
+networks:
+  redmine-network:
+
+services:
+  redmine:
+    image:
+      redmine:latest
+    networks:
+      - redmine-network
+    restart:
+      always
+    ports:
+      - 3000:3000
+    environment:
+      REDMINE_DB_MYSQL: redmine-mysql
+      REDMINE_DB_DATABASE: redmine
+      REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_PASSWORD: redmine
+    volumes:
+      - /home/jenkins/Docker/redmine/files:/usr/src/redmine/files
+      - /home/jenkins/Docker/redmine/plugins:/usr/src/redmine/plugins
+      - /home/jenkins/Docker/redmine/vendor/plugins:/usr/src/redmine/vendor/plugins
+      - /home/jenkins/Docker/redmine/public/themes:/usr/src/redmine/public/themes
+    depends_on:
+      - redmine-mysql
+  redmine-mysql:
+    image:
+      mysql:5.7
+    networks:
+      - redmine-network
+    environment:
+      #MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: redmine
+      MYSQL_USER: redmine
+      MYSQL_PASSWORD: redmine
+    volumes:
+      - /home/jenkins/Docker/mysql-redmine:/var/lib/mysql
+
