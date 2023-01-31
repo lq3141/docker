@@ -19,5 +19,8 @@ if [ "$download_en" = true ]; then
 fi
 cp plantuml-1.2023.0.jar plantuml.jar
 
+# depend
+sudo docker pull minlag/mermaid-cli
+
 # docker image
-#sudo docker build -t pandoc:v1 .
+sudo docker build -t pandoc:v1 .

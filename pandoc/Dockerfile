@@ -42,7 +42,11 @@ RUN apt install -y python3 python3-pip
 RUN pip install panflute
 
 RUN npm i -g wavedrom-cli
-RUN npm i -g @mermaid-js/mermaid-cli
+
+# mermaid can't run in root, just the its docker
+#RUN npm i -g @mermaid-js/mermaid-cli
+
+# diagrams is not maintained
 #RUN npm i -g diagrams
 
 COPY pandoc /opt/pandoc
