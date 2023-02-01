@@ -52,6 +52,9 @@ RUN npm i -g wavedrom-cli
 COPY pandoc /opt/pandoc
 COPY plantuml.jar /opt/jar/plantuml.jar
 
+# setup env
+ENV PATH="$PATH:/opt/pandoc/bin"
+
 # no need to specify default entrypoint, looks like it's discouraged to use entrypoint
 #
 # ref:
@@ -66,4 +69,3 @@ COPY plantuml.jar /opt/jar/plantuml.jar
 #
 #ENTRYPOINT ["java"]
 #CMD ["-jar", "/opt/jar/plantuml.jar"]
-

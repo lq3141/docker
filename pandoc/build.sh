@@ -20,7 +20,20 @@ fi
 cp plantuml-1.2023.0.jar plantuml.jar
 
 # depend
+# we do top on host, so we have to install ninja
+sudo apt install ninja
+
+## host
 sudo docker pull minlag/mermaid-cli
+
+# ref: https://miktex.org/howto/miktex-docker
+sudo docker pull miktex/miktex
+#   docker volume create --name miktex
+#   docker run -ti \
+#     -v miktex:/miktex/.miktex \
+#     -v `pwd`:/miktex/work \
+#     miktex/miktex \
+#     pdflatex main.tex
 
 # docker image
 sudo docker build -t pandoc:v1 .
