@@ -21,7 +21,7 @@ cp plantuml-1.2023.0.jar plantuml.jar
 
 # depend
 # we do top on host, so we have to install ninja
-sudo apt install ninja
+sudo apt install ninja-build
 
 ## host
 sudo docker pull minlag/mermaid-cli
