@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  openldap:
+    image: bitnami/openldap:2.5.14
+    environment:
+      - LDAP_ROOT=dc=devop,dc=net
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=ldap123
+    restart: always
+    volumes:
+      - data:/bitnami/openldap
+    ports:
+      - "1389:1389"
+      - "1636:1636"
+
+volumes:
+  data:
+    driver: local
+
+# launch: docker compose up
+# after launch:
+#   docker volumes ls
+#       openldap_data
+#  Then name of docker volume for openldap is
+#  assembled by services name (openldap) + volume name (data)
+#
+#  bind mount is a annoying solution, since bitnami:openldap
+#  is rootless, can't change uid/gid. Therefore, the best solution
+#  is to use docker volume. And docker volume backup method.
+#  ref: https://stackoverflow.com/questions/38298645/how-should-i-backup-restore-docker-named-volumes
+#
